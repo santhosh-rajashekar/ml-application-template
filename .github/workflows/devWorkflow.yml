@@ -44,6 +44,7 @@ jobs:
       environment: "dev"
       resource_group: "rg-mlops"
       workspace_name: "aml-ws-mlops"
+      machine_learning_online_endpoint_name: "online-endpoint-diabetes"
     secrets:
       TENANT_ID: ${{ secrets.TENANT_ID }}
       CLIENT_ID: ${{ secrets.CLIENT_ID }}
