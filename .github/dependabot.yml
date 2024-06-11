@@ -1,17 +1,17 @@
-version: 2
-enable-beta-ecosystems: true
-updates:
+# version: 2
+# enable-beta-ecosystems: true
+# updates:
 
-  # Maintain dependencies for GitHub Actions
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-      day: "sunday"
+#   # Maintain dependencies for GitHub Actions
+#   - package-ecosystem: "github-actions"
+#     directory: "/"
+#     schedule:
+#       interval: "weekly"
+#       day: "sunday"
 
-  # Maintain dependencies for pip
-  - package-ecosystem: "pip"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-      day: "sunday"
+#   # Maintain dependencies for pip
+#   - package-ecosystem: "pip"
+#     directory: "/"
+#     schedule:
+#       interval: "weekly"
+#       day: "sunday"
