@@ -32,9 +32,9 @@ readiness_probe:
   timeout: 2
   success_threshold: 1
   failure_threshold: 30
-data_collector:
-  enabled: true
-  destination:
-    path: azureml://datastores/workspaceblobstore/paths/online-endpoints
+# data_collector:
+#   enabled: true
+#   destination:
+#     path: azureml://datastores/workspaceblobstore/paths/online-endpoints
 egress_public_network_access: disabled
 # private_network_connection: false
