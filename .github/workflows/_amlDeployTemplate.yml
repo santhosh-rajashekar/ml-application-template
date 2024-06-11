@@ -66,9 +66,9 @@ jobs:
         run: |
           az extension add -n ml
 
-        # Deploy to Online Deployment
-      - name: Create Online Deployment
-        id: aml_online_deployment
+      # Create Deployment
+      - name: Create Online Endpoint
+        id: aml_create_managed_online_endpoint
         run: |
           DEPLOYMENT_NAME=dep-${BASE_NAME:0:28}
           az ml online-endpoint create \
@@ -79,8 +79,15 @@ jobs:
           STUDIO_URL=$(az ml job show --name $DEPLOYMENT_NAME --workspace-name ${{ inputs.workspace_name }} --resource-group ${{ inputs.workspace_name }} --query services.Studio.endpoint | jq -r)
 
           echo "studio_url=$STUDIO_URL" >> $GITHUB_OUTPUT
-          echo "job_name=$JOB_NAME" >> $GITHUB_OUTPUT
-          
+          echo "job_name=$JOB_NAME" >> $GITHUB_OUTPUT       
+        env:
+          BASE_NAME: "${{ github.run_attempt }}-${{ github.sha }}"
+
+      # Deploy to Online Deployment
+      - name: Deploy to Online Deployment
+        id: aml_online_deployment
+        run: |
+          DEPLOYMENT_NAME=dep-${BASE_NAME:0:28}         
           az ml online-deployment create \
             --resource-group ${{ inputs.resource_group }} \
             --workspace-name ${{ inputs.workspace_name }} \
