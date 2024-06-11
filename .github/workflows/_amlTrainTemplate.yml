@@ -16,8 +16,8 @@ on:
         required: true
         description: "Specifies the client id."
       SUBSCRIPTION_ID:
-          required: true
-          description: "Specifies the client id."
+        required: true
+        description: "Specifies the client id."
     outputs:
       job_name:
         description: "The name of the machine learning job."
