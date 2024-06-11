@@ -13,7 +13,7 @@ settings:
 experiment_name: training
 
 inputs:
-  tracking_uri: azureml://northeurope.api.azureml.ms/mlflow/v1.0/subscriptions/dfbd9ec6-9c65-43d6-bb61-bf7c4e221d9d/resourceGroups/ent-ml-dev-app001/providers/Microsoft.MachineLearningServices/workspaces/ent-ml-dev-machinelearning001
+  tracking_uri: azureml://westeurope.api.azureml.ms/mlflow/v1.0/subscriptions/20671c75-cecd-4a9d-9dfb-98defacfaec2/resourceGroups/rg-mlops/providers/Microsoft.MachineLearningServices/workspaces/aml-ws-mlops
   experiment_name: training
   model_name: supportvectorclassifier
   raw_data:
