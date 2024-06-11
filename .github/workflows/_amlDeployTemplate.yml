@@ -22,9 +22,7 @@ on:
         required: true
         type: string
         default: "online-endpoint-diabetes"
-        description: "Specifies the name of the endpoint."
-      
-      
+        description: "Specifies the name of the endpoint."   
     secrets:
       TENANT_ID:
         required: true
