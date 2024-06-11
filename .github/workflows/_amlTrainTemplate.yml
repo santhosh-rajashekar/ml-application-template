@@ -79,7 +79,7 @@ jobs:
       # Log out from Azure
       - name: Log out from Azure
         id: azure_logout
-        uses: azure/cli@v1
+        uses: azure/cli@v2
         with:
           azcliversion: "agentazcliversion"
           inlineScript: |
