@@ -72,7 +72,15 @@ jobs:
         run: |
           DEPLOYMENT_NAME=dep-${BASE_NAME:0:28}
           az ml online-endpoint create \
-           -f ${{ github.workspace }}/code/ml/score-online/endpoint.yml
+            --resource-group ${{ inputs.resource_group }} \
+            --workspace-name ${{ inputs.workspace_name }} \
+            --file ${{ github.workspace }}/code/ml/score-online/endpoint.yml
+          
+          STUDIO_URL=$(az ml job show --name $DEPLOYMENT_NAME --workspace-name ${{ inputs.workspace_name }} --resource-group ${{ inputs.workspace_name }} --query services.Studio.endpoint | jq -r)
+
+          echo "studio_url=$STUDIO_URL" >> $GITHUB_OUTPUT
+          echo "job_name=$JOB_NAME" >> $GITHUB_OUTPUT
+          
           az ml online-deployment create \
             --resource-group ${{ inputs.resource_group }} \
             --workspace-name ${{ inputs.workspace_name }} \
