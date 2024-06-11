@@ -1,0 +1,29 @@
+# name: Prod Deployment
+# on:
+#   workflow_dispatch:
+#   release:
+#     types: [published]
+#   push:
+#     branches:
+#       - main
+#     paths:
+#       - ".github/workflows/**"
+#       - "code/ml/**"
+
+#   pull_request:
+#     branches:
+#       - main
+#     paths:
+#       - ".github/workflows/**"
+#       - "code/ml/**"
+
+# jobs:
+#   aml_deploy_prd:
+#     uses: ./.github/workflows/_amlDeployTemplate.yml
+#     name: "Azure ML Deploy - Prd"
+#     if: github.event_name == 'workflow_dispatch' || github.event_name == 'release'
+#     with:
+#       environment: "prd"
+#     secrets:
+#       TENANT_ID: ${{ secrets.TENANT_ID }}
+#       CLIENT_ID: ${{ secrets.CLIENT_ID }}

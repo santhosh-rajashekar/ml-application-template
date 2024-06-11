@@ -1,0 +1,5 @@
+$schema: https://azuremlschemas.azureedge.net/latest/data.schema.json
+name: diabetes_mltable
+description: Data asset containing diabetes data.
+type: mltable
+path: azureml://subscriptions/20671c75-cecd-4a9d-9dfb-98defacfaec2/resourcegroups/rg-mlops/workspaces/aml-ws-mlops/datastores/workspaceblobstore/paths/UI/2024-06-11_002714_UTC/train/
