@@ -54,7 +54,7 @@ jobs:
       # Login to Azure
       - name: Azure Login
         id: azure_login
-        uses: azure/login@v1
+        uses: azure/login@v2
         with:
           client-id: ${{ secrets.CLIENT_ID }}
           tenant-id: ${{ secrets.TENANT_ID }}
