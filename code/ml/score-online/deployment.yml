@@ -10,8 +10,8 @@ environment_variables:
   TEST_KEY: TEST_VALUE
 environment:
   conda_file: ./conda.yml
-  image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04:latest
-instance_type: Standard_DS1_v2
+  image: mcr.microsoft.com/azureml/mlflow-ubuntu20.04-py38-cpu-inference:20240522.v1
+instance_type: Standard_D2as_v4
 instance_count: 1
 app_insights_enabled: true
 scale_settings:
@@ -36,5 +36,5 @@ readiness_probe:
 #   enabled: true
 #   destination:
 #     path: azureml://datastores/workspaceblobstore/paths/online-endpoints
-egress_public_network_access: disabled
+egress_public_network_access: enabled
 # private_network_connection: false
