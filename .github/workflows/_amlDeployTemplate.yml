@@ -70,10 +70,7 @@ jobs:
       - name: Check if AML endpoint exists
         id: check_endpoint
         run: |        
-          if az ml online-endpoint show \
-            --name ${{ inputs.machine_learning_online_endpoint_name }} \n
-            --resource-group ${{ inputs.resource_group }} \n
-            --workspace-name  ${{ inputs.workspace_name }} > /dev/null 2>&1; then \
+          if az ml online-endpoint show --name ${{ inputs.machine_learning_online_endpoint_name }} --resource-group ${{ inputs.resource_group }} --workspace-name  ${{ inputs.workspace_name }} > /dev/null 2>&1; then
             echo "Endpoint exists"
             echo "::set-output name=exists::true"
           else
