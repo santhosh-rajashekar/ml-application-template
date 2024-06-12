@@ -66,9 +66,25 @@ jobs:
         run: |
           az extension add -n ml
 
+      # Check if endpoint exists
+      - name: Check if AML endpoint exists
+        id: check_endpoint
+        run: |        
+          if az ml online-endpoint show \
+            --name ${{ inputs.machine_learning_online_endpoint_name }} \n
+            --resource-group ${{ inputs.resource_group }} \n
+            --workspace-name  ${{ inputs.workspace_name }} > /dev/null 2>&1; then \
+            echo "Endpoint exists"
+            echo "::set-output name=exists::true"
+          else
+            echo "Endpoint does not exist"
+            echo "::set-output name=exists::false"
+          fi
+
       # Create Deployment
       - name: Create Online Endpoint
         id: aml_create_managed_online_endpoint
+        if: steps.check_endpoint.outputs.exists == 'false'
         run: |
           DEPLOYMENT_NAME=dep-${BASE_NAME:0:28}
           az ml online-endpoint create \
@@ -76,7 +92,7 @@ jobs:
             --workspace-name ${{ inputs.workspace_name }} \
             --file ${{ github.workspace }}/code/ml/score-online/endpoint.yml
           
-          STUDIO_URL=$(az ml job show --name $DEPLOYMENT_NAME --workspace-name ${{ inputs.workspace_name }} --resource-group ${{ inputs.workspace_name }} --query services.Studio.endpoint | jq -r)
+          STUDIO_URL=$(az ml job show --name $DEPLOYMENT_NAME --workspace-name ${{ inputs.workspace_name }} --resource-group ${{ inputs.resource_group }} --query services.Studio.endpoint | jq -r)
 
           echo "studio_url=$STUDIO_URL" >> $GITHUB_OUTPUT
           echo "job_name=$JOB_NAME" >> $GITHUB_OUTPUT       
