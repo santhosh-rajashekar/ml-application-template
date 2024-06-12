@@ -72,16 +72,16 @@ jobs:
         run: |        
           if az ml online-endpoint show --name ${{ inputs.machine_learning_online_endpoint_name }} --resource-group ${{ inputs.resource_group }} --workspace-name  ${{ inputs.workspace_name }} > /dev/null 2>&1; then
             echo "Endpoint exists"
-            echo "::set-output name=exists::true"
+            echo "exists=true" >> $GITHUB_ENV
           else
             echo "Endpoint does not exist"
-            echo "::set-output name=exists::false"
+            echo "exists=false" >> $GITHUB_ENV
           fi
 
       # Create Deployment
       - name: Create Online Endpoint
         id: aml_create_managed_online_endpoint
-        if: steps.check_endpoint.outputs.exists == 'false'
+        if: env.exists == 'false'
         run: |
           DEPLOYMENT_NAME=dep-${BASE_NAME:0:28}
           az ml online-endpoint create \
